@@ -4,7 +4,7 @@ import requests, smtplib, ssl, os, sched, time, email.message, email.utils, logg
 from datetime import datetime
 
 # Calendar related
-calendar_url = "https://webcalendar.brucity.be/qmaicwebbooking/rest/schedule/branches/e58833ee8321437b292cd75df53f283fdc0b56ca09b678971ad3ca509edcb862/dates;servicePublicId=hidebfeab6987796c5f484529fcea02e924401747b1aca9d20a3695623027cc1;customSlotLength=25"
+calendar_url = "https://webcalendar.brucity.be/qmaicwebbooking/rest/schedule/branches/e58833ee8321437b292cd75df53f283fdc0b56ca09b678971ad3ca509edcb862/dates;servicePublicId=hidebfeab6987796c5f484529fcea02e924401747b1aca9d20a3695623027cc1;customSlotLength=35"
 target_date = datetime(2022, 8, 16)
 
 # Email related
@@ -19,12 +19,9 @@ logging.basicConfig(filename="BRU_NDN.log",
                     format='%(asctime)s %(message)s',
                     filemode='w')
 
-# Creating an object
+# Configure logger
 logger = logging.getLogger()
-
-# Setting the threshold of logger to DEBUG
 logger.setLevel(logging.DEBUG)
-
 
 # Fetching new dates and acting if needed
 def fetch_date(sc):
@@ -76,6 +73,7 @@ def send_email_notification(new_date):
 if not smtp_password:
     smtp_password = input("Type your smtp password and press enter: ")
 os.system('clear')
+
 # Start checking for dates regularly
 print("New dates will be checked for around every 10 minutes...")
 s = sched.scheduler(time.time, time.sleep)
