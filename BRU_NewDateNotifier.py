@@ -66,7 +66,7 @@ def send_email_notification(new_date):
         server.login(smtp_email, smtp_password)
         server.sendmail(msg['From'], [msg['To']], msg.as_string())
 
-    logger.info("Earlier date found ({newer_date}), email was sent!").format(newer_date=new_date)
+    logger.info(f"Earlier date found ({new_date}), email was sent!")
     print(f"    Email sent!\033[0m\n")
 
 # Ask for password
@@ -77,5 +77,5 @@ os.system('clear')
 # Start checking for dates regularly
 print("New dates will be checked for around every 10 minutes...")
 s = sched.scheduler(time.time, time.sleep)
-s.enter(5, 1, fetch_date, (s,))
+s.enter(1, 1, fetch_date, (s,))
 s.run()
