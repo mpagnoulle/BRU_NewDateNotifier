@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import requests, smtplib, ssl, os, sched, time, email.message, email.utils, logging, traceback
+import requests, smtplib, ssl, os, schedule, time, email.message, email.utils, logging, traceback
 from datetime import datetime
 
 # Calendar related
